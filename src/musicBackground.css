@@ -1,0 +1,45 @@
+.musicBackground{
+	position: absolute;
+	left:50%;
+	margin-left: -100px;
+	top:10%;
+	width:200px;
+	height:200px;
+	border-radius: 50%;
+	background:url('./IMG/musicDisc.png');
+	background-size: cover; 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: trans 5s infinite linear;
+}
+.musicBackground p{
+	width:100px;
+	height:100px;
+	background: #910505;
+	border-radius:50%;
+	background-image: url(./IMG/zhuanji.jpg);
+	background-position: center;
+	background-size: cover;
+	filter: brightness(70%);
+	border:3px solid #171717;	
+	display: inherit;
+	justify-content: center;
+	align-items: center;	
+}
+.musicBackground p span{
+	display: inline-block;
+	width:10px;
+	height:10px;
+	background: #175a92;
+	border-radius:50%;
+	border:1px solid #000;		
+}
+@keyframes trans{
+	0%{		
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(360deg);
+	}		
+}

@@ -1,0 +1,25 @@
+.progress {
+	clear: both;
+	margin:0 auto;
+	padding-top: 20px;
+  	width: 300px;
+}
+.progress .bar {
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0.2);
+  width:300px;
+  position: absolute;
+  z-index:3;
+}
+.progress .bar .progress-now {
+  background-color: #ccc;
+  height: 3px;
+  width: 0;
+  position: absolute;
+  z-index:0;
+}
+.progress .time {
+  text-align: right;
+  font-weight: 100;
+  color: #ccc;
+}

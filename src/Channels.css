@@ -1,0 +1,23 @@
+.styleList{
+	width:100%;
+	height:100vh;
+	overflow-y: scroll
+}
+
+.styleList p,.styleList p span{
+	display: inline-block;
+	width:100%;
+	height:14vh;
+	text-align: center;
+	font-size: 1.3rem;
+	color:rgba(254,245,234,1);
+	line-height: 14vh;
+	font-weight: 100;
+	letter-spacing: 0.2rem;
+	background-size: cover;
+	background-position: center;
+
+}
+.styleList span{
+	background: rgba(0,0,0,.5)
+}
