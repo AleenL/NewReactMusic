@@ -1,7 +1,9 @@
 import React from 'react'
 import MusicBackground from './MusicBackground'
+import PlayBar from './PlayBar'
 import Channels from './Channels'
 import Ajax from './Ajax'
+import './MusicPage.css'
 
 class MusicPage extends React.Component{
 	constructor(props){
@@ -14,6 +16,11 @@ class MusicPage extends React.Component{
 			index:0,
 			load:false,
 		}
+	}
+
+
+	componentDidMount(){
+		this.getChannels()
 	}
 
 	getChannels(){
@@ -43,8 +50,8 @@ class MusicPage extends React.Component{
 			that.state.data.push(data)
 			var music = document.getElementById('music')
 			music.src = data.song[0].url
+			setTimeout(()=>(that.setState({load:false})),1000)
 			that.setState({
-				load:false,
 				music:music,
 				picture:data.song[0].picture,
 				sid:data.song[0].sid,
@@ -60,16 +67,37 @@ class MusicPage extends React.Component{
 		}).catch(function(Error){
 			console.log('Error')
 		})
+	}
 
-
+	stylePage(e){
+		let Page = document.getElementsByClassName('MusicPage')[0]
+		if(e.target.className.indexOf('style')>-1){
+			Page.style.marginLeft = '0px'
+		}else if(e.target.className.indexOf('play')>-1){
+			Page.style.marginLeft = '-100vw'
+		}else{
+			Page.style.marginLeft = '-200vw'
+		}
 	}
 
 render(){
 		return (
-			<div>
-				<MusicBackground state={this.state.playstate} picture={this.state.picture}/>
-				<p onClick={this.getChannels.bind(this)}>获取音乐</p>
-				<Channels channels={this.state.channels} getMusic={this.getMusic.bind(this)}/>
+			<div className='MusicPage'>
+				<div className="styleItems">
+					<Channels channels={this.state.channels} getMusic={this.getMusic.bind(this)}/>
+				</div>				
+				<div className='playPage'>
+					<MusicBackground state={this.state.playstate} picture={this.state.picture}/>
+					<PlayBar music={this.state.music} />
+				</div>
+				<div className='LrcPage'>
+				 hhhhh
+				</div>
+				<div className='bottomBtn'>
+					<p className='stylePage' onClick={this.stylePage.bind(this)}>1</p>
+					<p className='playPage' onClick={this.stylePage.bind(this)}>2</p>
+					<p className='lrcPage' onClick={this.stylePage.bind(this)}>3</p>
+				</div>
 				<audio id="music" autoPlay='autoplay'></audio>
 				{this.state.load && <div className='loading' style={{
 					width:'100%',

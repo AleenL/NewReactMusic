@@ -1,13 +1,22 @@
+.playBar{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:95%;
+  margin:0 auto;
+  margin-top:80vh;
+}
+
 .progress {
 	clear: both;
 	margin:0 auto;
-	padding-top: 20px;
-  	width: 300px;
+  width: 250px;
 }
 .progress .bar {
   height: 3px;
   background-color: rgba(0, 0, 0, 0.2);
-  width:300px;
+  width:250px;
   position: absolute;
   z-index:3;
 }
@@ -22,4 +31,5 @@
   text-align: right;
   font-weight: 100;
   color: #ccc;
+  font-size: 0.1rem
 }

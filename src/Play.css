@@ -1,6 +1,7 @@
 .musicPlay{
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 	background:url('./IMG/backGr.png') no-repeat;
 	background-size: cover;
+	overflow:hidden;
 }
