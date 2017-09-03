@@ -1,0 +1,22 @@
+#Lyric-page{
+	margin: 0 auto;
+	width: 80vw;
+  	height: 80vh;
+  	color: #fff;
+  	font-size: 1rem;
+	overflow: hidden;
+  	position: relative;
+  	z-index: 20;
+}
+#Lyric-page ul{
+	position: absolute;
+	width: 100%;
+  	transition: 500ms all;
+}
+#Lyric-page ul li{
+  	width: 100vw;
+  	text-align: center;
+  	height: 40px;
+  	line-height: 40px;
+
+}

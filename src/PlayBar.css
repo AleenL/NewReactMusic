@@ -30,6 +30,6 @@
 .progress .time {
   text-align: right;
   font-weight: 100;
-  color: #ccc;
+  color: rgba(245,245,245,.6);
   font-size: 0.1rem
 }

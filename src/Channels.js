@@ -41,7 +41,7 @@ class Channels extends React.Component{
 						className={value.channel_id} 
 						onClick={this.getMusic.bind(this)}
 						style={{backgroundImage:'url('+this.state.imgUrl[index%14]+')'}}
-						><span>{value.name}</span></p>
+						><span className={value.channel_id} >{value.name}</span></p>
 					)
 				})}
 			</div>

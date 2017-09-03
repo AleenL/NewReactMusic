@@ -3,6 +3,7 @@ import MusicBackground from './MusicBackground'
 import PlayBar from './PlayBar'
 import Channels from './Channels'
 import Ajax from './Ajax'
+import ShowLrc from './ShowLrc'
 import './MusicPage.css'
 
 class MusicPage extends React.Component{
@@ -37,6 +38,7 @@ class MusicPage extends React.Component{
 	}
 
 	getMusic(e){
+		console.log(e.target)
 		this.setState({load:true})
 		let [that,audioObject] = [this,undefined]
 		if(!e){
@@ -91,7 +93,7 @@ render(){
 					<PlayBar music={this.state.music} />
 				</div>
 				<div className='LrcPage'>
-				 hhhhh
+				 <ShowLrc music={this.state.music} sid={this.state.sid}/>
 				</div>
 				<div className='bottomBtn'>
 					<p className='stylePage' onClick={this.stylePage.bind(this)}>1</p>
