@@ -12,6 +12,7 @@
 	justify-content: center;
 	align-items: center;
 	animation: trans 5s infinite linear;
+	
 }
 .musicBackground p{
 	width:100px;
@@ -25,7 +26,8 @@
 	border:3px solid #171717;	
 	display: inherit;
 	justify-content: center;
-	align-items: center;	
+	align-items: center;
+
 }
 .musicBackground p span{
 	display: inline-block;
@@ -33,7 +35,18 @@
 	height:10px;
 	background: #175a92;
 	border-radius:50%;
-	border:1px solid #000;		
+	border:1px solid #000;
+
+}
+.MusicPoint{
+	position: absolute;
+	z-index:99;
+	position: absolute;
+	top:10%;
+	left:50%;
+	margin-left: 60px;
+	transform-origin:0% 0%;
+	transition: transform .5s ease-in;
 }
 @keyframes trans{
 	0%{		

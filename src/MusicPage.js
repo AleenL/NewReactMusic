@@ -60,7 +60,7 @@ class MusicPage extends React.Component{
 				lrc:data.song[0].lrc,
 				url:data.song[0].url,
 				title:data.song[0].title,
-				artist:data.song[0].title
+				artist:data.song[0].artist
 			})
 			that.getLrc(data.song[0].sid)
 		},function(error){
@@ -82,6 +82,20 @@ class MusicPage extends React.Component{
 		}
 	}
 
+	stop(){
+		if(this.state.music.paused){
+			this.state.music.play()
+			this.setState({
+				playstate:false
+			})
+		}else{
+			this.state.music.pause()
+			this.setState({
+				playstate:true
+			})			
+		}
+	}	
+
 render(){
 		return (
 			<div className='MusicPage'>
@@ -90,6 +104,10 @@ render(){
 				</div>				
 				<div className='playPage'>
 					<MusicBackground state={this.state.playstate} picture={this.state.picture}/>
+					<div className='MusicTitle'>
+						<p onClick={this.stop.bind(this)}>{this.state.title}</p>
+						<p>{this.state.artist}</p>
+					</div>
 					<PlayBar music={this.state.music} />
 				</div>
 				<div className='LrcPage'>

@@ -1,12 +1,15 @@
 #Lyric-page{
 	margin: 0 auto;
-	width: 80vw;
+	width: 100vw;
   	height: 80vh;
   	color: #fff;
   	font-size: 1rem;
 	overflow: hidden;
   	position: relative;
   	z-index: 20;
+  	font-weight: 100;
+  	font-size: 0.1rem;
+  	margin-top: -10vh;
 }
 #Lyric-page ul{
 	position: absolute;

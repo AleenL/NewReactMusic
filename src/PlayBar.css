@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width:95%;
+  width:90%;
   margin:0 auto;
   margin-top:80vh;
 }
@@ -27,7 +27,7 @@
   position: absolute;
   z-index:0;
 }
-.progress .time {
+.time {
   text-align: right;
   font-weight: 100;
   color: rgba(245,245,245,.6);

@@ -6,7 +6,7 @@ class ShowLrc extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			lrc:[],
+			lrc:[]
 		}
 	}
 

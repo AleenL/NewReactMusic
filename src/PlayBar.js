@@ -2,7 +2,7 @@ import React from 'react'
 import './PlayBar.css'
 
 class PlayBar extends React.Component{
-constructor(props){
+	constructor(props){
 		super(props);
 		this.state={
 			time:"00:00",
@@ -12,7 +12,9 @@ constructor(props){
 	componentDidUpdate(nextProps){
 		if(this.props.music !== nextProps.music){
 			setInterval(()=>this.getTime(this.props.music.currentTime),1000)
-
+			this.props.music.ended=function(){
+				console.log('end')
+			}
 		}
 	}
 
