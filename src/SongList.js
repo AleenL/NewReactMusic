@@ -6,12 +6,16 @@ class SongList extends React.Component{
 
 
 	show(e){
-		if(e.target.getAttribute('data') === 'show'){
-			e.target.style.transform = 'rotateZ(90deg)'
-			e.target.setAttribute('data','hide')
-		}else{
-			e.target.style.transform = 'rotateZ(0deg)'
+		if(e.target.nodeName !== 'DIV') return false;
+		var node = e.target.children[1],nextNode = e.target.nextSibling
+		if(e.target.getAttribute('data') === 'hide'){
+			node.style.transform = 'rotateZ(90deg)'
 			e.target.setAttribute('data','show')
+			nextNode.style.display='block'			
+		}else{
+			node.style.transform = 'rotateZ(0deg)'
+			e.target.setAttribute('data','hide')
+			nextNode.style.display='none'			
 		}
 	}
 
@@ -23,9 +27,9 @@ class SongList extends React.Component{
 		return (
 			<div className='SongList'>
 				<div className='song'>
-					<div className='songListTitle'>
+					<div className='songListTitle' data='hide' onClick={this.show.bind(this)} >
 						<p>试听列表</p>
-						<p className='ShowList' data='show' onClick={this.show.bind(this)}></p>
+						<p className='ShowList'></p>
 					</div>
 					<div className='songlist'>
 						{this.props.data.map((value,index)=>{
@@ -42,9 +46,9 @@ class SongList extends React.Component{
 					</div>			
 				</div>
 				<div className='like'>
-					<div className='likesongTitle'>
+					<div className='likesongTitle'  data='hide' onClick={this.show.bind(this)}>
 						<p>我喜欢的</p>
-						<p className='ShowList' data='show' onClick={this.show.bind(this)}></p>
+						<p className='ShowList'></p>
 					</div>
 					<div className='likesong'>					
 						{this.props.data.map((value,index)=>{

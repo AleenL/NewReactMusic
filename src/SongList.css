@@ -9,7 +9,12 @@
 	letter-spacing: 0.3rem;
 	display: flex;
 	justify-content: space-between;
-	align-items:center;	
+	align-items:center;
+	
+}
+
+.songlist,.likesong{
+	display: none;
 }
 
 .songlist>div,.likesong>div{
@@ -39,7 +44,8 @@
 	height:18px;
 	transition: transform .3s ease;
 	margin-right: 1rem;
-	opacity: 0.6
+	opacity: 0.6;
+
 }
 .PlayThis{
 	width: 0;
