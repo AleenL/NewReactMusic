@@ -12,6 +12,8 @@ class Play extends React.Component{
 
 		}else if(e.target.className.indexOf('play')>-1){
 			Page.style.marginLeft = '-100vw'
+		}else if(e.target.className.indexOf('song')>-1){
+			Page.style.marginLeft = '-300vw'
 		}else{
 			Page.style.marginLeft = '-200vw'
 		}
@@ -25,6 +27,7 @@ class Play extends React.Component{
 					<p className='stylePage' onClick={this.stylePage.bind(this)}>1</p>
 					<p className='playPage' onClick={this.stylePage.bind(this)}>2</p>
 					<p className='lrcPage' onClick={this.stylePage.bind(this)}>3</p>
+					<p className='songPage' onClick={this.stylePage.bind(this)}>4</p>
 				</div>				
 			</div>
 		)

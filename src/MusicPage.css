@@ -1,5 +1,5 @@
 .MusicPage{
-	width:300%;
+	width:400%;
 	height:100vh;
 	margin-left: -100%;
 	overflow: hidden;
@@ -9,9 +9,12 @@
 	align-items: center;
 	
 }
-.playPage,.styleItems,.lrcPage{
+.playPage,.styleItems,.lrcPage,.SongList{
 	width:100vw;
 	height:100vh;
+}
+.playPage{
+	position: relative;
 }
 .bottomBtn{
 	position: fixed;

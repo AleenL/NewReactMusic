@@ -39,11 +39,11 @@ class PlayBar extends React.Component{
 	}
 
 	changeTime(e){
-		let time,width=window.innerWidth;
+		let time;
 		if(e.target.className.indexOf('bar')>-1){
-			time = (e.pageX+width-e.target.offsetLeft)/e.target.clientWidth*this.props.music.duration
+			time = (e.pageX-e.target.offsetLeft)/e.target.clientWidth*this.props.music.duration
 		}else(
-			time = (e.pageX +width- e.target.parentNode.offsetLeft)/e.target.parentNode.clientWidth*this.props.music.duration)
+			time = (e.pageX - e.target.parentNode.offsetLeft)/e.target.parentNode.clientWidth*this.props.music.duration)
 		this.props.music.currentTime = time
 		
 	}

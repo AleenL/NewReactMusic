@@ -5,7 +5,7 @@ import Channels from './Channels'
 import Ajax from './Ajax'
 import ShowLrc from './ShowLrc'
 import './MusicPage.css'
-import Like from './Like'
+import SongList from './SongList'
 
 class MusicPage extends React.Component{
 	constructor(props){
@@ -153,6 +153,7 @@ render(){
 				<div className='LrcPage'>
 				 <ShowLrc music={this.state.music} sid={this.state.sid}/>
 				</div>
+				<SongList data={this.state.data} index={this.state.index} />
 				
 				<audio id="music" autoPlay='autoplay'></audio>
 				{this.state.load && <div className='loading' style={{
