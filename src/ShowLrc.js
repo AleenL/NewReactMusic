@@ -8,6 +8,7 @@ class ShowLrc extends React.Component{
 		this.state={
 			lrc:[],
 			state:true,
+			sid:null,
 		}
 	}
 
@@ -18,11 +19,12 @@ class ShowLrc extends React.Component{
 		}
 	}
 
-	/*componentDidMount(nextProp){
-		if(this.props.sid){
+	componentWillReceiveProps(nextProps){
+		if(nextProps.sid){
 			this.getLrc(this.props.sid)
 		}
-	}*/
+
+	}
 
 
 	getLrc(sid){

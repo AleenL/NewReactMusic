@@ -1,25 +1,43 @@
 .songListTitle,.likesongTitle{
 	width:100%;
 	height:6vh;
-	background:rgba(0,0,0,.7);
+	background:rgba(20,20,20,.8);
 	color:rgba(255,255,255,.8);
 	font-weight: 100;
-	text-align: center;
+	text-indent: 1rem;
 	line-height: 6vh;
 	letter-spacing: 0.3rem;
+	display: flex;
+	justify-content: space-between;
+	align-items:center;	
 }
 
 .songlist>div,.likesong>div{
 	width:90%;
 	margin: 0 auto;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid rgba(255,255,255,.3);
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items:center;
 	height:7vh;
-	color:rgba(0,0,0,.5);
+	font-weight: 100;
+	color:rgba(255,255,255,.6);
+}
+
+.songlist>div:last-child,.likesong>div:last-child{
+	border:none;
 }
 
 .songlist>div>div>p:nth-child(2),.likesong>div>div>p:nth-child(2){
-	font-size: 0.3rem
+	font-size: 0.3rem;
+	padding-top: 0.2rem;
+}
+.ShowList{
+	background: url('./IMG/RightBtn.png') no-repeat;
+	background-size: 100% 100%;
+	width:10px;
+	height:18px;
+	transition: transform .3s ease;
+	margin-right: 1rem;
+	opacity: 0.6
 }
