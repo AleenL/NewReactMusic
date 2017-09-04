@@ -46,7 +46,7 @@ class SongList extends React.Component{
 					</div>			
 				</div>
 				<div className='like'>
-					<div className='likesongTitle'  data='hide' onClick={this.show.bind(this)}>
+					<div className='likesongTitle'  data='show' onClick={this.show.bind(this)}>
 						<p>我喜欢的</p>
 						<p className='ShowList'></p>
 					</div>

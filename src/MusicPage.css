@@ -32,8 +32,8 @@
 	
 }
 .bottomBtn p{
-	width:40px;
-	height:40px;
+	width:27px;
+	height:27px;
 }
 .MusicTitle{
 	width:100vw;
@@ -41,12 +41,12 @@
 	color: rgba(255,255,255,.8);
 	font-weight: 100;
 	position: absolute;
-	top:70%;
+	top:65%;
 	line-height: 2rem;
 }
 .PlayBtn{
 	width:300px;
-	top:60%;
+	top:55%;
 	left:50%;
 	margin-left: -150px;
 	position: absolute;
