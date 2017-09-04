@@ -28,7 +28,6 @@ class ShowLrc extends React.Component{
 
 
 	getLrc(sid){
-		console.log(1)
 		let that = this;
 		let audioObject = new Ajax('https://jirenguapi.applinzi.com/fm/getLyric.php','get',{sid:sid},false)
 		audioObject.getMsg().then(function(data){
@@ -45,7 +44,6 @@ class ShowLrc extends React.Component{
 	    while (!pattern.test(lines[0])) {
 	        lines = lines.slice(1);
 	    }
-	    console.log(lines)
 	    lines[lines.length - 1].length === 0 && lines.pop()
 	    lines.forEach(function(v,i,a){
 	    	var time = v.match(pattern),

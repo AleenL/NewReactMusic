@@ -17,7 +17,7 @@ class MusicPage extends React.Component{
 			channel:'',
 			index:0,
 			load:false,
-			like:[],
+			like:false
 		}
 	}
 
@@ -32,11 +32,7 @@ class MusicPage extends React.Component{
 		if(!this.state.music) return false;
 		setInterval(()=>{
 			if(this.state.music.ended){
-				if(this.state.channel){
-					this.getMusic(this.state.channel)
-				}else{
-					this.getMusic()
-				}
+				this.nextMusic()
 			}
 		},1000)
 		
@@ -65,6 +61,7 @@ class MusicPage extends React.Component{
 			audioObject = new Ajax('https://jirenguapi.applinzi.com/fm/getSong.php','get',{channel:value},false)
 		}
 		audioObject.getMsg().then(function(data){
+			if(!data){that.getMusic()}
 			that.setState({
 				data:that.state.data.concat({song:[data,'NotlikeBtn']}),
 				index:that.state.index+1
@@ -81,7 +78,6 @@ class MusicPage extends React.Component{
 				title:data.song[0].title,
 				artist:data.song[0].artist
 			})
-			that.getLrc(data.song[0].sid)
 		},function(error){
 			//未获取到就返回失败
 			console.log('失败')
@@ -91,13 +87,18 @@ class MusicPage extends React.Component{
 	}
 
 	chooseMusic(e){
-		if(e.target.className === 'nextBtn'){
-			this.getMusic(this.state.channel)
-		}else{
-			this.getMusic(e.target.className)
-		}
+		this.getMusic(e.target.className)
 	}
 
+	nextMusic(){
+		if(this.state.data.length > this.state.index){
+			let value = (this.state.data[this.state.index].song[0]).song[0]
+			this.MusicPlay(value)
+			this.setState({index:this.state.index+1})
+		}else{
+			this.getMusic(this.state.channel)
+		}
+	}
 	
 
 	stop(e){
@@ -131,6 +132,42 @@ class MusicPage extends React.Component{
 		}
 	}
 
+	MusicPlay(value){
+		let music = document.getElementById('music')	
+		music.src = value.url
+			setTimeout(()=>(this.setState({load:false})),1000)
+			this.setState({
+				music:music,
+				picture:value.picture,
+				sid:value.sid,
+				lrc:value.lrc,
+				url:value.url,
+				title:value.title,
+				artist:value.artist,
+			})		
+	}
+
+	ListPlay(e){
+		let data=[];
+		if(e.target.className.indexOf('song')>-1){
+			this.setState({like:false})
+			data = this.state.data
+		}else{
+			this.setState({like:true})
+			this.state.data.forEach((e)=>{
+			if((e.song)[1] === 'likeBtn'){
+					data.push(e)
+				}
+			})			
+		}
+		
+		let index = parseInt(e.target.className.match(/\d/))
+		let value = (data[index].song[0]).song[0]
+		
+		this.MusicPlay(value)
+		this.setState({index:index+1})
+	}
+
 render(){
 		return (
 			<div className='MusicPage'>
@@ -146,14 +183,14 @@ render(){
 					<div className='PlayBtn'>
 						{!!this.state.data.length && <p className={(this.state.data[this.state.index-1].song)[1]} onClick={this.like.bind(this)}></p>}
 						<p className='playBtn' onClick={this.stop.bind(this)}></p>
-						<p className='nextBtn' onClick={this.chooseMusic.bind(this)}></p>
+						<p className='nextBtn' onClick={this.nextMusic.bind(this)}></p>
 					</div>
 					<PlayBar music={this.state.music} />
 				</div>
 				<div className='LrcPage'>
 				 <ShowLrc music={this.state.music} sid={this.state.sid}/>
 				</div>
-				<SongList data={this.state.data} index={this.state.index} />
+				<SongList data={this.state.data} ListPlay={this.ListPlay.bind(this)} />
 				
 				<audio id="music" autoPlay='autoplay'></audio>
 				{this.state.load && <div className='loading' style={{

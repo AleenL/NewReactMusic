@@ -15,6 +15,10 @@ class SongList extends React.Component{
 		}
 	}
 
+	ListPlay(e){
+		this.props.ListPlay(e)
+	}
+
 	render(){
 		return (
 			<div className='SongList'>
@@ -26,7 +30,7 @@ class SongList extends React.Component{
 					<div className='songlist'>
 						{this.props.data.map((value,index)=>{
 							return (
-								<div key={index}>
+								<div key={index} className={`song${index}`} onClick={this.ListPlay.bind(this)}>
 									<div>
 										<p>{((value.song)[0].song[0]).title}</p>
 										<p>{((value.song)[0].song[0]).artist}</p>										
@@ -46,7 +50,7 @@ class SongList extends React.Component{
 						{this.props.data.map((value,index)=>{
 							if((value.song)[1] !== 'likeBtn') return false;
 							return (
-								<div key={index}>
+								<div key={index} className={`like${index}`} onClick={this.ListPlay.bind(this)}>
 									<div>
 										<p>{((value.song)[0].song[0]).title}</p>
 										<p>{((value.song)[0].song[0]).artist}</p>										
