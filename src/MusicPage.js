@@ -155,6 +155,7 @@ class MusicPage extends React.Component{
 		if(e.target.className.indexOf('song')>-1){
 			this.setState({like:false})
 			data = this.state.data
+			
 		}else{
 			this.setState({like:true})
 			this.state.data.forEach((e)=>{
@@ -168,7 +169,7 @@ class MusicPage extends React.Component{
 		let value = (data[index].song[0]).song[0]
 		
 		this.MusicPlay(value)
-		this.setState({index:index+1})
+		
 	}
 
 render(){
