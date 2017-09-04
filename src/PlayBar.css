@@ -31,5 +31,6 @@
   text-align: right;
   font-weight: 100;
   color: rgba(245,245,245,.6);
-  font-size: 0.1rem
+  font-size: 0.8rem;
+  width:40px;
 }
