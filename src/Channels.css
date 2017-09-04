@@ -7,11 +7,11 @@
 .styleList p,.styleList p span{
 	display: inline-block;
 	width:100%;
-	height:14vh;
+	height:20vh;
 	text-align: center;
 	font-size: 1.3rem;
 	color:rgba(254,245,234,1);
-	line-height: 14vh;
+	line-height: 20vh;
 	font-weight: 100;
 	letter-spacing: 0.2rem;
 	background-size: cover;
