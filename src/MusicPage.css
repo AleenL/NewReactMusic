@@ -1,12 +1,11 @@
 .MusicPage{
 	width:400%;
 	height:100vh;
-	margin-left: -100%;
 	overflow: hidden;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	
+	transition: margin-left .1s ease-in-out ;
 }
 .playPage,.styleItems,.LrcPage,.SongList{
 	width:100vw;
