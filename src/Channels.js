@@ -30,6 +30,8 @@ class Channels extends React.Component{
 	getMusic(e){
 		if(!e) return;
 		this.props.getMusic(e)
+		let PageNode = document.getElementsByClassName('MusicPage')[0]
+		PageNode.style.marginLeft = '-100%'			
 	}
 
 	render(){

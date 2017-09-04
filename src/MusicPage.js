@@ -24,6 +24,8 @@ class MusicPage extends React.Component{
 
 	componentDidMount(){
 		this.getChannels()
+		this.getMusic('public_tuijian_billboard')
+
 	}
 
 	componentDidUpdate(){
@@ -50,9 +52,7 @@ class MusicPage extends React.Component{
 	}
 
 	getMusic(value){
-		let PageNode = document.getElementsByClassName('MusicPage')[0]
-		PageNode.style.marginLeft = '-100%'
-
+			
 		this.setState({load:true})
 		let [that,audioObject] = [this,undefined]
 		if(!value){
