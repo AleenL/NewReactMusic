@@ -13,6 +13,9 @@
 	width:100vw;
 	height:100vh;
 }
+.SongList{
+	background:#fff;
+}
 .playPage{
 	position: relative;
 }
