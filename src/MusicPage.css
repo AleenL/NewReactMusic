@@ -1,12 +1,13 @@
 .MusicPage{
 	width:300%;
 	height:100vh;
+	margin-left: -100%;
 	overflow: hidden;
 	position: relative;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	transition: margin-left .3s ease-in;	
+	
 }
 .playPage,.styleItems,.lrcPage{
 	width:100vw;
@@ -29,4 +30,53 @@
 	height:40px;
 	background: #ccc;
 }
+.MusicTitle{
+	width:100vw;
+	text-align: center;
+	color: rgba(255,255,255,.8);
+	font-weight: 100;
+	position: absolute;
+	top:70%;
+	line-height: 2rem;
+}
+.PlayBtn{
+	width:300px;
+	top:60%;
+	left:50%;
+	margin-left: -150px;
+	position: absolute;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
 
+.PlayBtn p{
+	width:35px;
+	height:30px;
+}
+
+.PlayBtn p.likeBtn{
+	background: url('./IMG/Like.png') no-repeat;
+	background-size: 100% 100%;
+}
+.PlayBtn p.NotlikeBtn{
+	background: url('./IMG/NotLike.png') no-repeat;
+	background-size: 100% 100%;
+}
+
+.PlayBtn p.playBtn{
+	background: url('./IMG/paused.png') no-repeat;
+	background-size: 100% 100%;
+}
+.PlayBtn p.nextBtn{
+	background: url('./IMG/nextPlay.png') no-repeat;
+	background-size: 100% 100%;
+}
+.PlayBtn p.pausedBtn{
+	background: url('./IMG/play.png') no-repeat;
+	background-size: 100% 100%;
+}

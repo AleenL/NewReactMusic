@@ -6,21 +6,31 @@ class ShowLrc extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={
-			lrc:[]
+			lrc:[],
+			state:true,
 		}
 	}
 
 	componentDidUpdate(nextProps){
 		if(this.props.sid !== nextProps.sid){
 			this.getLrc(this.props.sid)
+
 		}
 	}
 
+	/*componentDidMount(nextProp){
+		if(this.props.sid){
+			this.getLrc(this.props.sid)
+		}
+	}*/
+
 
 	getLrc(sid){
+		console.log(1)
 		let that = this;
 		let audioObject = new Ajax('https://jirenguapi.applinzi.com/fm/getLyric.php','get',{sid:sid},false)
 		audioObject.getMsg().then(function(data){
+			that.setState({state:false})
 			that.showLrc(data.lyric)
 		})		
 	}
@@ -51,8 +61,7 @@ class ShowLrc extends React.Component{
 	    this.setState({
 	    	lrc:result
 	    })
-	    let LrcItems = document.getElementById('Lyric-page'),
-	    	LrcList = document.getElementsByClassName('LrcList')[0]
+	    let LrcList = document.getElementsByClassName('LrcList')[0]
 		this.props.music.ontimeupdate = function(){
 			for (var i = 0, l = result.length; i < l; i++){
 				if(that.props.music.currentTime>result[i][0]){
@@ -76,6 +85,7 @@ class ShowLrc extends React.Component{
 					{this.state.lrc.map((value,index)=>{
 						return( <li key={index}>{value[1]}</li>)
 					})}
+					{this.state.state && <div className='seachLrc'><img src={require('./IMG/Lrc.png')}/></div>}
 				</ul>
 			</div>
 		)

@@ -5,6 +5,7 @@ import Channels from './Channels'
 import Ajax from './Ajax'
 import ShowLrc from './ShowLrc'
 import './MusicPage.css'
+import Like from './Like'
 
 class MusicPage extends React.Component{
 	constructor(props){
@@ -16,12 +17,29 @@ class MusicPage extends React.Component{
 			channel:'',
 			index:0,
 			load:false,
+			like:[],
 		}
 	}
 
 
 	componentDidMount(){
 		this.getChannels()
+		this.getMusic('public_tuijian_billboard')
+
+	}
+
+	componentDidUpdate(){
+		if(!this.state.music) return false;
+		setInterval(()=>{
+			if(this.state.music.ended){
+				if(this.state.channel){
+					this.getMusic(this.state.channel)
+				}else{
+					this.getMusic()
+				}
+			}
+		},1000)
+		
 	}
 
 	getChannels(){
@@ -37,19 +55,20 @@ class MusicPage extends React.Component{
 		})			
 	}
 
-	getMusic(e){
-		console.log(e.target)
+	getMusic(value){
 		this.setState({load:true})
 		let [that,audioObject] = [this,undefined]
-		if(!e){
-			this.setState({index:this.state.index+1})
+		if(!value){
 			audioObject = new Ajax('https://jirenguapi.applinzi.com/fm/getSong.php','get',false)
 		}else{
-			this.setState({channel:e.target.className,index:this.state.index+1})
-			audioObject = new Ajax('https://jirenguapi.applinzi.com/fm/getSong.php','get',{channel:e.target.className},false)
+			this.setState({channel:value})
+			audioObject = new Ajax('https://jirenguapi.applinzi.com/fm/getSong.php','get',{channel:value},false)
 		}
 		audioObject.getMsg().then(function(data){
-			that.state.data.push(data)
+			that.setState({
+				data:that.state.data.concat({song:[data,'NotlikeBtn']}),
+				index:that.state.index+1
+			})
 			var music = document.getElementById('music')
 			music.src = data.song[0].url
 			setTimeout(()=>(that.setState({load:false})),1000)
@@ -68,56 +87,73 @@ class MusicPage extends React.Component{
 			console.log('失败')
 		}).catch(function(Error){
 			console.log('Error')
-		})
+		})		
 	}
 
-	stylePage(e){
-		let Page = document.getElementsByClassName('MusicPage')[0]
-		if(e.target.className.indexOf('style')>-1){
-			Page.style.marginLeft = '0px'
-		}else if(e.target.className.indexOf('play')>-1){
-			Page.style.marginLeft = '-100vw'
+	chooseMusic(e){
+		if(e.target.className === 'nextBtn'){
+			this.getMusic(this.state.channel)
 		}else{
-			Page.style.marginLeft = '-200vw'
+			this.getMusic(e.target.className)
 		}
 	}
 
-	stop(){
+	
+
+	stop(e){
 		if(this.state.music.paused){
 			this.state.music.play()
+			e.target.className = 'playBtn'
 			this.setState({
 				playstate:false
 			})
 		}else{
 			this.state.music.pause()
+			e.target.className = 'pausedBtn'
 			this.setState({
 				playstate:true
 			})			
 		}
-	}	
+	}
+
+	like(e){
+		let data = this.state.data
+		if(e.target.className.indexOf('NotlikeBtn')>-1){
+			(data[this.state.index-1].song)[1] = 'likeBtn'
+			this.setState(
+				data:data
+			)
+		}else{
+			(data[this.state.index-1].song)[1] = 'NotlikeBtn'
+			this.setState(
+				data:data
+			)			
+		}
+	}
 
 render(){
 		return (
 			<div className='MusicPage'>
 				<div className="styleItems">
-					<Channels channels={this.state.channels} getMusic={this.getMusic.bind(this)}/>
+					<Channels channels={this.state.channels} getMusic={this.chooseMusic.bind(this)}/>
 				</div>				
 				<div className='playPage'>
 					<MusicBackground state={this.state.playstate} picture={this.state.picture}/>
-					<div className='MusicTitle'>
-						<p onClick={this.stop.bind(this)}>{this.state.title}</p>
+					<div className='MusicTitle' id={this.state.channel}>
+						<p>{this.state.title}</p>
 						<p>{this.state.artist}</p>
+					</div>
+					<div className='PlayBtn'>
+						{!!this.state.data.length && <p className={(this.state.data[this.state.index-1].song)[1]} onClick={this.like.bind(this)}></p>}
+						<p className='playBtn' onClick={this.stop.bind(this)}></p>
+						<p className='nextBtn' onClick={this.chooseMusic.bind(this)}></p>
 					</div>
 					<PlayBar music={this.state.music} />
 				</div>
 				<div className='LrcPage'>
 				 <ShowLrc music={this.state.music} sid={this.state.sid}/>
 				</div>
-				<div className='bottomBtn'>
-					<p className='stylePage' onClick={this.stylePage.bind(this)}>1</p>
-					<p className='playPage' onClick={this.stylePage.bind(this)}>2</p>
-					<p className='lrcPage' onClick={this.stylePage.bind(this)}>3</p>
-				</div>
+				
 				<audio id="music" autoPlay='autoplay'></audio>
 				{this.state.load && <div className='loading' style={{
 					width:'100%',
