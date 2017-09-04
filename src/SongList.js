@@ -35,7 +35,7 @@ class SongList extends React.Component{
 										<p>{((value.song)[0].song[0]).title}</p>
 										<p>{((value.song)[0].song[0]).artist}</p>										
 									</div>
-									<p>></p>
+									<p className='PlayThis'></p>
 								</div>								
 							)
 						})}							
@@ -55,7 +55,7 @@ class SongList extends React.Component{
 										<p>{((value.song)[0].song[0]).title}</p>
 										<p>{((value.song)[0].song[0]).artist}</p>										
 									</div>
-									<p>></p>
+									<p className='PlayThis'></p>
 								</div>	
 							)
 						})}	

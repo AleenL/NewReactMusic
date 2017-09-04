@@ -41,3 +41,11 @@
 	margin-right: 1rem;
 	opacity: 0.6
 }
+.PlayThis{
+	width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-left: 12px solid rgba(255,255,255,.6);
+    border-bottom: 6px solid transparent;
+    margin-right: 1rem;
+}

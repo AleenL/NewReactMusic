@@ -61,7 +61,8 @@ class MusicPage extends React.Component{
 			audioObject = new Ajax('https://jirenguapi.applinzi.com/fm/getSong.php','get',{channel:value},false)
 		}
 		audioObject.getMsg().then(function(data){
-			if(!data){that.getMusic()}
+			if(!data.song[0].url){that.getMusic()}
+			if(!data.song[0].url) return false;
 			that.setState({
 				data:that.state.data.concat({song:[data,'NotlikeBtn']}),
 				index:that.state.index+1
@@ -91,6 +92,8 @@ class MusicPage extends React.Component{
 	}
 
 	nextMusic(){
+
+		this.setState({load:true})
 		if(this.state.data.length > this.state.index){
 			let value = (this.state.data[this.state.index].song[0]).song[0]
 			this.MusicPlay(value)
@@ -173,8 +176,10 @@ render(){
 			<div className='MusicPage'>
 				<div className="styleItems">
 					<Channels channels={this.state.channels} getMusic={this.chooseMusic.bind(this)}/>
+					{this.state.load && <div className='loading'>load..</div>}
 				</div>				
 				<div className='playPage'>
+					{this.state.load && <div className='loading'>load..</div>}
 					<MusicBackground state={this.state.playstate} picture={this.state.picture}/>
 					<div className='MusicTitle' id={this.state.channel}>
 						<p>{this.state.title}</p>
@@ -193,14 +198,7 @@ render(){
 				<SongList data={this.state.data} ListPlay={this.ListPlay.bind(this)} />
 				
 				<audio id="music" autoPlay='autoplay'></audio>
-				{this.state.load && <div className='loading' style={{
-					width:'100%',
-					height:'100vh',
-					background: 'rgba(0,0,0,.5)',
-					position: 'fixed',
-					zIndex:'99',
-					top:'0'					
-				}}>load..</div>}
+				
 			</div>	
 		)
 	}		

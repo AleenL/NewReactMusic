@@ -5,3 +5,24 @@
 	background-size: cover;
 	overflow:hidden;
 }
+
+.stylePage{
+	background: url('./IMG/StyleItems.png') no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.PlayPage{
+	background: url('./IMG/PlayNow.png') no-repeat;
+	background-size: 80% 80%;
+	background-position: center;
+}
+
+.lrcPage{
+	background: url('./IMG/LrcItems.png') no-repeat;
+	background-size: 100% 100%;
+}
+.songPage{
+	background: url('./IMG/SongItems.png') no-repeat;
+	background-size: 80% 80%;
+	background-position: center;
+}
