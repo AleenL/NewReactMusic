@@ -24,7 +24,6 @@ class MusicPage extends React.Component{
 
 	componentDidMount(){
 		this.getChannels()
-		this.getMusic('public_tuijian_billboard')
 
 	}
 
@@ -66,7 +65,7 @@ class MusicPage extends React.Component{
 			if(!data.song[0].url) return false;
 			that.setState({
 				data:that.state.data.concat({song:[data,'NotlikeBtn']}),
-				index:that.state.index+1
+				index:that.state.data.length+1
 			})
 			var music = document.getElementById('music')
 			music.src = data.song[0].url
@@ -95,6 +94,7 @@ class MusicPage extends React.Component{
 	nextMusic(){
 
 		this.setState({load:true})
+		console.log(this.state.index)
 		if(this.state.data.length > this.state.index){
 			let value = (this.state.data[this.state.index].song[0]).song[0]
 			this.MusicPlay(value)
@@ -153,6 +153,9 @@ class MusicPage extends React.Component{
 
 	ListPlay(e){
 		let data=[];
+		let index = parseInt(e.target.className.match(/\d/))
+		
+		
 		if(e.target.className.indexOf('song')>-1){
 			this.setState({like:false})
 			data = this.state.data
@@ -165,12 +168,9 @@ class MusicPage extends React.Component{
 				}
 			})			
 		}
-		
-		let index = parseInt(e.target.className.match(/\d/))
 		let value = (data[index].song[0]).song[0]
-		
 		this.MusicPlay(value)
-		
+		this.setState({index:index+1})
 	}
 
 render(){
