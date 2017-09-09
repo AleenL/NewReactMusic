@@ -12,9 +12,6 @@ class PlayBar extends React.Component{
 	componentDidUpdate(nextProps){
 		if(this.props.music !== nextProps.music){
 			setInterval(()=>this.getTime(this.props.music.currentTime),1000)
-			this.props.music.ended=function(){
-				console.log('end')
-			}
 		}
 	}
 

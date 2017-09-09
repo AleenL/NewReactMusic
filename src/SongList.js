@@ -27,11 +27,11 @@ class SongList extends React.Component{
 		if(e.target.nodeName !== 'DIV') return false;
 		var node = e.target.children[1],nextNode = e.target.nextSibling
 		if(e.target.getAttribute('data') === 'hide'){
-			node.style.transform = 'rotateZ(90deg)'
+			node.style.transform = 'rotateZ(0deg)'
 			e.target.setAttribute('data','show')
 			nextNode.style.display='block'			
 		}else{
-			node.style.transform = 'rotateZ(0deg)'
+			node.style.transform = 'rotateZ(90deg)'
 			e.target.setAttribute('data','hide')
 			nextNode.style.display='none'			
 		}
@@ -45,7 +45,7 @@ class SongList extends React.Component{
 		return (
 			<div className='SongList'>
 				<div className='song'>
-					<div className='songListTitle' data='hide' onClick={this.show.bind(this)} >
+					<div className='songListTitle' data='show' onClick={this.show.bind(this)} >
 						<p>试听列表</p>
 						<p className='ShowList'></p>
 					</div>

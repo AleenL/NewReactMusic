@@ -6,6 +6,7 @@
 	justify-content: flex-start;
 	align-items: center;
 	transition: margin-left .1s ease-in-out ;
+	animation-play-state:paused
 }
 .playPage,.styleItems,.LrcPage,.SongList{
 	width:100vw;

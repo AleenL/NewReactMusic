@@ -52,16 +52,11 @@ class Music extends React.Component{
 		}
 	}
 
-	getLrc(sid){
-		let audioObject = new Ajax('https://jirenguapi.applinzi.com/fm/getLyric.php','get',{sid:sid},false)
-		audioObject.getMsg().then(function(data){
-			console.log(data)
-		})
-
-	}
-
 
 	getMusic(e){
+		this.setState({
+			playstate:true
+		})
 		let [that,audioObject] = [this,undefined]
 		if(!e){
 			this.setState({index:this.state.index+1})
@@ -83,7 +78,7 @@ class Music extends React.Component{
 				title:data.song[0].title,
 				artist:data.song[0].title
 			})
-			that.getLrc(data.song[0].sid)
+
 		},function(error){
 			//未获取到就返回失败
 			console.log('失败')

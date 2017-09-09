@@ -17,7 +17,8 @@ class MusicPage extends React.Component{
 			channel:'',
 			index:0,
 			load:false,
-			like:false
+			like:false,
+			playstate:false
 		}
 	}
 
@@ -52,7 +53,8 @@ class MusicPage extends React.Component{
 
 	getMusic(value){
 			
-		this.setState({load:true})
+		this.setState({load:true,playstate:true})
+		console.log(1)
 		let [that,audioObject] = [this,undefined]
 		if(!value){
 			audioObject = new Ajax('https://jirenguapi.applinzi.com/fm/getSong.php','get',false)
@@ -106,15 +108,13 @@ class MusicPage extends React.Component{
 	
 
 	stop(e){
-		if(this.state.music.paused){
-			this.state.music.play()
-			e.target.className = 'playBtn'
+		if(this.state.playstate){
+			this.state.music.pause()
 			this.setState({
 				playstate:false
 			})
 		}else{
-			this.state.music.pause()
-			e.target.className = 'pausedBtn'
+			this.state.music.play()
 			this.setState({
 				playstate:true
 			})			
@@ -155,6 +155,9 @@ class MusicPage extends React.Component{
 		let data=[];
 		let index = parseInt(e.target.className.match(/\d/))
 		
+		this.setState({
+			playstate:true
+		})
 		
 		if(e.target.className.indexOf('song')>-1){
 			this.setState({like:false})
@@ -189,7 +192,7 @@ render(){
 					</div>
 					<div className='PlayBtn'>
 						{!!this.state.data.length && <p className={(this.state.data[this.state.index-1].song)[1]} onClick={this.like.bind(this)}></p>}
-						<p className='playBtn' onClick={this.stop.bind(this)}></p>
+						<p className={this.state.playstate?'playBtn':'pausedBtn'} onClick={this.stop.bind(this)}></p>
 						<p className='nextBtn' onClick={this.nextMusic.bind(this)}></p>
 					</div>
 					<PlayBar music={this.state.music} />

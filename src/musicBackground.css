@@ -12,7 +12,7 @@
 	justify-content: center;
 	align-items: center;
 	animation: trans 5s infinite linear;
-	
+	animation-play-state:paused
 }
 .musicBackground p{
 	width:100px;
@@ -47,6 +47,7 @@
 	margin-left: 60px;
 	transform-origin:0% 0%;
 	transition: transform .5s ease-in;
+	transform:rotateZ(-14deg)
 }
 @keyframes trans{
 	0%{		
